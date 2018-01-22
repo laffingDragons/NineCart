@@ -1,0 +1,19 @@
+{
+  "name": "ninecart",
+  "version": "1.0.0",
+  "description": "Ecommerce website using Mongo, Node and Express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laffingDragons/NineCart.git"
+  },
+  "author": "Akshay Patil",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/laffingDragons/NineCart/issues"
+  },
+  "homepage": "https://github.com/laffingDragons/NineCart#readme"
+}
