@@ -1,14 +1,18 @@
 var express  = require('express');
 var app      = express();
+var path = require('path');
 var port     = process.env.PORT || 3000;
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
+var favicon = require('serve-favicon');
 
 var logger       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
+var expressHbs = require('express-handlebars');
+var validator = require('express-validator');
 
 var configDB = require('./config/database.js');
 
@@ -17,6 +21,7 @@ mongoose.connect(configDB.url); // connect to our database
 
 require('./config/passport');
 
+var routes = require('./routes/index')
 // view engine setup
 app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs'}));
 app.set('view engine', '.hbs');
@@ -28,13 +33,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(validator());
 app.use(cookieParser());
-app.use(session({
+/*app.use(session({
   secret: 'mysupersecret', 
   resave: false, 
   saveUninitialized: false,
   store: new MongoStore({ mongooseConnection: mongoose.connection }),
   cookie: { maxAge: 180 * 60 * 1000 }
-}));
+}));*/
 app.use(flash()); //FOr showing flash messages to user
 app.use(passport.initialize());
 app.use(passport.session());
@@ -46,7 +51,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.use('/user', userRoutes);
+/*app.use('/user', userRoutes);*/
 app.use('/', routes);
 
 // catch 404 and forward to error handler
